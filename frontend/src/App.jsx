@@ -4,13 +4,6 @@ import Login from './pages/Login';
 import Navbar from './pages/Navbar';
 import './App.css';
 
-const isAuthenticated = () => {
-  const token = localStorage.getItem('authToken');
-  return token && token !== '';
-};
-
-
-
 function NavbarWrapper() {
   const location = useLocation(); 
   return location.pathname !== "/" ? <Navbar /> : null;
@@ -22,11 +15,7 @@ function App() {
       <NavbarWrapper /> 
       <Routes>
         <Route path="/" element={<Login />} />
-        {/* <Route path="/dashboard" element={<TaskManager />} /> */}
-        <Route 
-          path="/dashboard" 
-          element={isAuthenticated() ? <TaskManager /> : <Navigate to="/" />} 
-        />
+        <Route path="/dashboard" element={<TaskManager />} />
       </Routes>
     </Router>
   );
